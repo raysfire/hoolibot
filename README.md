@@ -9,8 +9,9 @@ Hoolibot utilizes the **[PircBotX library](https://github.com/TheLQ/pircbotx)**,
  - Timed messages
  - Built in delay to prevent a global ban from Twitch's servers
  - Flexibility to support additional features
+ - The ability to join an unlimited number of IRC channels concurrently
  - Responses to specific chat commands, such as:
-	 - Active "now playing" information for a particular user
+	 - Active "now playing" information for a particular user, including song name, artist, and album
 	 - Active server IP information for a particular user
 	 - FrankerZ
 
