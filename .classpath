@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="lib/lastfm-java-0.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/jdom-2.0.5.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ian/Downloads/pircbotx-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ian/Downloads/guava-17.0.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ian/Downloads/slf4j-1.7.7/slf4j-1.7.7/slf4j-api-1.7.7.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ian/Downloads/commons-codec-1.9-bin/commons-codec-1.9/commons-codec-1.9.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ian/Downloads/commons-lang3-3.3.2-bin/commons-lang3-3.3.2/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ian/Downloads/slf4j-1.7.7/slf4j-1.7.7/slf4j-jdk14-1.7.7.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ian/Downloads/jsoup-1.7.3.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Ian/Downloads/google-gson-2.2.4-release/google-gson-2.2.4/gson-2.2.4-sources.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
