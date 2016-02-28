@@ -6,8 +6,8 @@ public class Tshirt extends ListenerAdapter {
 
 	public void onMessage(MessageEvent event) {
 		if(event.getMessage().toLowerCase().contains("!shirt") && !event.getUser().getNick().equals(Constants.NICK) ) {
-			event.getChannel().send().message("Official raysFox t-shirts are available now for the next few days! You can "
-					+ "check them out here: http://shirt.raysfi.re/ If you do decide to buy one, thank you so much for your support! <3");
+			event.getChannel().send().message("Check out http://shirt.raysfi.re/ for your chance to get an exclusive, limited-edition raysfire"
+					+ " zip-up hoodie!");
 		}
 	}
 	

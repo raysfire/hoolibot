@@ -5,10 +5,10 @@ import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
 
 public class Connection {
-
+	
 	public static void main (String args[]) throws IOException {
 		
-		//Setup this bot
+		//Setup this bot		
 		Configuration config = new Configuration.Builder() //create intial configuration builder
 		.setName(Constants.NICK) //Set the nick of the bot
 		.setServer(Constants.SERVER, Constants.PORT, Constants.PASSWORD) //Set the server/login info of the bot
@@ -31,12 +31,14 @@ public class Connection {
 		.addListener(new Help())
 		.addListener(new About())
 		.addListener(new Song())
-		.addListener(new JoinGame())
-		.addListener(new Rayserver())
+		//.addListener(new JoinGame())
+		//.addListener(new Rayserver())
 		.addListener(new Subscribe())
-		//.addListener(new Tshirt()) // Not currently in use
+		.addListener(new Tshirt()) // Not currently in use
 		.addListener(new Facebook())
 		.addListener(new Discord())
+		.addListener(new Giveaway())
+		//.addListener(new Marathon())
 		
 		.buildConfiguration();
 
