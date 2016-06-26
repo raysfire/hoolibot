@@ -1,6 +1,7 @@
 
 public final class Constants {
 	public static final int PORT = 6667;
+	public static final String BROADCASTER = "<YOUR USERNAME HERE>"; // username of the broadcaster
 	public static final String NICK = "<TWITCH NAME HERE>"; // username of Twitch account to connect
 	public static final String LASTFM_USER = "<LAST.FM USERNAME HERE>";   // username of last.fm user to grab song data from
 	public static final String CHANNEL = "<DESIRED TWITCH CHANNEL HERE>";	   // desired twitch channel to join (note: multiple supported)
