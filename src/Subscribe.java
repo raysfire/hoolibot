@@ -1,7 +1,6 @@
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.MessageEvent;
 
-
 public class Subscribe extends ListenerAdapter {
 
 	public void onMessage(MessageEvent event) {

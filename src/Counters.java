@@ -1,7 +1,5 @@
 import org.pircbotx.hooks.ListenerAdapter;
-import org.pircbotx.hooks.events.ConnectEvent;
 import org.pircbotx.hooks.events.MessageEvent;
-
 
 public class Counters extends ListenerAdapter {
 	

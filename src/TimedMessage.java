@@ -1,7 +1,5 @@
-import org.apache.commons.lang3.time.StopWatch;
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ConnectEvent;
-
 
 public class TimedMessage extends ListenerAdapter {
 

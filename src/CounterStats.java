@@ -1,7 +1,6 @@
 import org.pircbotx.hooks.ListenerAdapter;
 import org.pircbotx.hooks.events.ConnectEvent;
 
-
 public class CounterStats extends ListenerAdapter {
 
 	public void onConnect(ConnectEvent event) throws InterruptedException {
