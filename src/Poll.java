@@ -1,5 +1,7 @@
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.pircbotx.Channel;
 import org.pircbotx.hooks.ListenerAdapter;
@@ -13,7 +15,9 @@ public class Poll extends ListenerAdapter {
 
 	// Store options
 	Map<Integer, String> pollOptions = new HashMap<>();
-	int[] votes;
+	
+	// Store votes
+	Map<UUID, Integer> userVotes = new HashMap<>();
 
 	// Helper to send messages to the server
 	public void sendMessage(MessageEvent event, String message) {
@@ -38,32 +42,20 @@ public class Poll extends ListenerAdapter {
 		return false;
 	}
 
-	public void displayResults(Channel channel) {
-		channel.send().message("Results:");
-
-		for(int i = 0; i < votes.length; i++) {
-			channel.send().message(pollOptions.get(i) + ": " + votes[i]);
-		}
-
-		channel.send().message("Poll has ended!");
-		// Reset poll options
-		pollOptions.clear();
-	}
-
 	public void onMessage(MessageEvent event) {
 		String message = event.getMessage();
 
 		if (shouldStartPoll(event)) {
-			String[] params = message.split(" ");
+			String params = message.substring(message.indexOf(' ') + 1);
+			
+			if (!params.isEmpty()) {
+				String[] options = params.split(", ");
 
-			if (params.length > 1) {
-				votes = new int[params.length - 1];
-
-				for (int i = 1; i < params.length; i++) {
-					pollOptions.put(i-1, params[i]);
+				for (int i = 0; i < options.length; i++) {
+					pollOptions.put(i, options[i]);
 				}
 
-				sendMessage(event, getPollOptions(params));
+				sendMessage(event, getPollOptions());
 			} else {
 				pollEnabled = false;
 				return;
@@ -71,40 +63,43 @@ public class Poll extends ListenerAdapter {
 		} else if (pollEnabled) {
 			if (shouldEndPoll(event)) {
 				sendMessage(event, getPollResults());
+				pollOptions.clear();
+				userVotes.clear();
 			}
 
 			int voteKey = 0;
 			try {
 			  voteKey = Integer.parseInt(event.getMessage());
+			  
+			  // decrement 1 to match the poll options keys
+			  Object optionValue = pollOptions.get(voteKey - 1);
+			  
+			  if (optionValue != null) {
+				  userVotes.put(event.getUser().getUserId(), voteKey - 1);
+			  }
 			} catch (NumberFormatException e) {
 			  // not a valid vote
-			}
-
-			if (voteKey != 0) {
-				votes[voteKey-1] = votes[voteKey-1] + 1;
 			}
 		}
 	}
 
 	protected String getPollResults() {
 		StringBuilder builder = new StringBuilder("Poll has ended!  Here are the results: ");
-		for (int i = 0; i < votes.length; i++) {
-			builder.append(pollOptions.get(i)).append(": ").append(votes[i]);
-			if (i != votes.length - 1) {
-				builder.append(" | ");
-			}
+		
+		for (int key : pollOptions.keySet()) {
+			builder.append(" | ");
+			int count = Collections.frequency(userVotes.values(), key);
+			builder.append(pollOptions.get(key)).append(": ").append(count);
 		}
 			
 		return builder.toString();
 	}
 	
-	protected static String getPollOptions(String[] options) {
+	protected String getPollOptions() {
 		StringBuilder builder = new StringBuilder("Poll Starting!  Vote on the following options: ");
-		for (int i = 1; i < options.length; i++) {
-			builder.append("Enter ").append(i).append(" for ").append(options[i]);
-			if (i != options.length - 1) {
-				builder.append(" | ");
-			}
+		for (Map.Entry<Integer, String> entry : pollOptions.entrySet()) {
+			builder.append(" | ");
+			builder.append("Enter ").append(entry.getKey() + 1).append(" for ").append(entry.getValue());
 		}
 			
 		return builder.toString();
